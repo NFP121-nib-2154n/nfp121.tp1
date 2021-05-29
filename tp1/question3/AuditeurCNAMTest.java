@@ -122,4 +122,41 @@ public class AuditeurCNAMTest extends junit.framework.TestCase {
         assertEquals(" nom avec accent (é devient e) ? ", "chloe_c",
             auditeur1.login());
     }
+    
+    public void test_nom_avec_accent_aigu() {
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("Sélim",
+                "sélim", "222533");
+        assertEquals("Mr Sélim sélim ", "Sélim", auditeur1.nom());
+        assertEquals("Mme Sélim sélim ", "sélim", auditeur1.prenom());
+        assertEquals(" nom avec accent (é devient e) ? ", "selim_s",
+            auditeur1.login());
+    }
+    
+    public void test_nom_avec_apostrophe() {
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("J'oe",
+                "joe", "12345");
+        assertEquals("Mr J'oe joe ", "J'oe", auditeur1.nom());
+        assertEquals("Mr J'oe joe", "joe", auditeur1.prenom());
+        assertEquals(" nom avec apostrophe (' devient _) ? ", "j_oe_j",
+            auditeur1.login());
+    }    
+
+    public void test_nom_avec_accent_grave() {
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("Chloè",
+                "chloè", "12345");
+        assertEquals("Mme Chloè chloè", "Chloè", auditeur1.nom());
+        assertEquals("Mme Chloè chloè", "chloè", auditeur1.prenom());
+        assertEquals(" nom avec accent (è devient e) ? ", "chloe_c",
+            auditeur1.login());
+    }
+    
+    public void test_nom_avec_accent_et_apostrophe() {
+        question3.AuditeurCNAM auditeur1 = new question3.AuditeurCNAM("C'loè",
+                "c'loè", "12345");
+        assertEquals("Mme C'loè chloè", "C'loè", auditeur1.nom());
+        assertEquals("Mme C'loè chloè", "c'loè", auditeur1.prenom());
+        assertEquals(" nom avec accent et apostrophe (' deviens _) (è devient e) ? ", "c_loe_c",
+            auditeur1.login());
+    }    
+
 }

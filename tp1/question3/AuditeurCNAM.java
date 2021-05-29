@@ -45,7 +45,48 @@ public class AuditeurCNAM {
      *         homonymes...
      */
     public String login() {
-        return "";// à compléter
+        String firstSixLetters="";
+        switch(nom.length()){
+            case 1: firstSixLetters = nom.substring(0,1); break;
+            case 2: firstSixLetters = nom.substring(0,2); break;
+            case 3: firstSixLetters = nom.substring(0,3); break;
+            case 4: firstSixLetters = nom.substring(0,4); break;
+            case 5: firstSixLetters = nom.substring(0,5); break;
+            case 6: firstSixLetters = nom.substring(0,6); break;
+            default: firstSixLetters = nom.substring(0,6); break;
+        }
+        
+        if(firstSixLetters.contains(" ")){
+            firstSixLetters = firstSixLetters.replaceAll(" ", "_").toLowerCase();
+        }
+        
+        if(firstSixLetters.contains("'")){
+            firstSixLetters = firstSixLetters.replaceAll("'", "_").toLowerCase();
+        }        
+
+        if(firstSixLetters.contains("'") && firstSixLetters.contains("é")){
+            firstSixLetters = firstSixLetters.replaceAll("'", "_").toLowerCase();
+            firstSixLetters = firstSixLetters.replaceAll("é", "e").toLowerCase();
+        }        
+        
+        if(firstSixLetters.contains("-")){
+            firstSixLetters = firstSixLetters.replaceAll("-", "_").toLowerCase();
+        }
+       
+        if(firstSixLetters.contains("é")){
+            firstSixLetters = firstSixLetters.replaceAll("é", "e").toLowerCase();
+        }                 
+        
+        if(firstSixLetters.contains("è")){
+            firstSixLetters = firstSixLetters.replaceAll("è", "e").toLowerCase();
+        }        
+        
+        String underScore = "_";
+        char firstLetterName = prenom.charAt(0);
+        String letters = Character.toString(firstLetterName);
+        String login_name = firstSixLetters + underScore + firstLetterName;
+        String login_name_lowercase = login_name.toLowerCase();
+        return login_name_lowercase;
     }
 
     /**
@@ -54,7 +95,7 @@ public class AuditeurCNAM {
      * @return son nom
      */
     public String nom() {
-        return null;// à compléter
+        return nom;
     }
 
     /**
@@ -63,7 +104,7 @@ public class AuditeurCNAM {
      * @return son prénom
      */
     public String prenom() {
-        return null;// à compléter
+        return prenom;
     }
 
     /**
@@ -72,7 +113,7 @@ public class AuditeurCNAM {
      * @return son matricule
      */
     public String matricule() {
-        return null;// à compléter
+        return matricule;
     }
 
     /**
