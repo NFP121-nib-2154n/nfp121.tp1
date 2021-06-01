@@ -3,6 +3,11 @@ package question2;
 import question1.Circle;
 import question1.Square;
 import question1.Triangle;
+import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
+import javax.swing.*;
 
 /**
  * This class represents a simple picture. You can draw the picture using the
@@ -15,13 +20,13 @@ import question1.Triangle;
  * @author Michael Kolling and David J. Barnes
  * @version 1.1 (24 May 2001)
  */
-public class Picture {
+public class Picture{
     private Square wall;
     private Square window;
     private Triangle roof;
     private Circle sun;
     private Circle sun2;
-    private int yPosition;
+    private boolean wallVisible; //if wall is visible -> earth is fix
 
     /**
      * Constructor for objects of class Picture
@@ -38,6 +43,7 @@ public class Picture {
         wall.moveVertical(80);
         wall.changeSize(100);
         wall.makeVisible();
+        wallVisible = true;
 
         window = new Square();
         window.changeColor("black");
@@ -64,6 +70,7 @@ public class Picture {
         sun2.moveVertical(-10);
         sun2.changeSize(60);
         sun2.makeVisible();
+
     }
 
     /**
@@ -99,8 +106,12 @@ public class Picture {
      */
     
     public void sunset() {
+        if(wallVisible==true){
         sun.slowMoveVertical(180);
+        }
     }
+    
+    
     
 
 }
